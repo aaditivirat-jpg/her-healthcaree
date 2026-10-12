@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FAF8F5;
+    --foreground: #292524;
+    --card: #FFFFFF;
+    --card-foreground: #292524;
+    --primary: #9E2651;
+    --primary-foreground: #FFFFFF;
+    --secondary: #F5EFEB;
+    --secondary-foreground: #44403C;
+    --muted: #F5EFEB;
+    --muted-foreground: #78716C;
+    --accent: #EBD7E5;
+    --accent-foreground: #4F2D44;
+    --border: #EFE7E0;
+    --input: #EFE7E0;
+    --ring: #9E2651;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Lora', Georgia, serif;
+  }
+}
+
+/* Subtle smooth focus states */
+*:focus-visible {
+  outline: 2px solid #BC3464;
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D5C5B9;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C2AEA0;
+}
