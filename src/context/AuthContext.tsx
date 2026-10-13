@@ -14,6 +14,7 @@ interface AuthContextType {
   signup: (email: string, password: string, displayName: string) => Promise<boolean>;
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<{ success: boolean; message: string }>;
+  updatePassword: (password: string) => Promise<boolean>;
   updateProfile: (displayName: string, timezone: string) => Promise<void>;
   clearError: () => void;
 }
@@ -209,6 +210,25 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const updatePassword = async (password: string): Promise<boolean> => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      if (!isSupabaseConfigured || !supabase) {
+        setError('Password updates are unavailable because authentication is not configured.');
+        return false;
+      }
+      const { error: updateError } = await supabase.auth.updateUser({ password });
+      if (updateError) throw updateError;
+      return true;
+    } catch (err: any) {
+      setError(err.message || 'Password update failed. Please request a new recovery link.');
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const updateProfile = async (displayName: string, timezone: string): Promise<void> => {
     if (!user) return;
     const updated: UserProfile = { ...user, displayName, timezone };
@@ -235,6 +255,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         signup,
         logout,
         resetPassword,
+        updatePassword,
         updateProfile,
         clearError: () => setError(null),
       }}
