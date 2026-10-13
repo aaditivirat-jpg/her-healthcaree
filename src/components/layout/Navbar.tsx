@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
-  const { user, role, isAuthenticated, logout, switchRoleForTesting } = useAuth();
+  const { user, role, isAuthenticated, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -207,29 +207,6 @@ export const Navbar: React.FC = () => {
                         <User className="w-4 h-4 text-stone-500" />
                         Account Settings & Privacy
                       </Link>
-
-                      {/* Demo Role Switcher helper */}
-                      <div className="px-4 py-2 bg-ivory-50 my-1">
-                        <span className="text-[11px] text-stone-500 block mb-1 font-medium">Evaluate Role View:</span>
-                        <div className="flex gap-1.5">
-                          <button
-                            onClick={() => switchRoleForTesting('registered_user')}
-                            className={`text-xs px-2 py-1 rounded ${
-                              role === 'registered_user' ? 'bg-rose-600 text-white font-medium' : 'bg-white border text-stone-600'
-                            }`}
-                          >
-                            Member
-                          </button>
-                          <button
-                            onClick={() => switchRoleForTesting('admin')}
-                            className={`text-xs px-2 py-1 rounded ${
-                              role === 'admin' ? 'bg-plum-800 text-white font-medium' : 'bg-white border text-stone-600'
-                            }`}
-                          >
-                            Admin
-                          </button>
-                        </div>
-                      </div>
 
                       <button
                         onClick={handleLogout}

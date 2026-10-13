@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Heart, Lock, Mail, AlertCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Heart, Lock, Mail, AlertCircle, ArrowRight } from 'lucide-react';
 
 export const LoginPage: React.FC = () => {
   const { login, resetPassword, error, clearError } = useAuth();
@@ -22,16 +22,6 @@ export const LoginPage: React.FC = () => {
     clearError();
 
     const ok = await login(email, password);
-    setIsSubmitting(false);
-    if (ok) {
-      navigate(from, { replace: true });
-    }
-  };
-
-  const handleQuickDemoLogin = async (demoEmail: string) => {
-    setIsSubmitting(true);
-    clearError();
-    const ok = await login(demoEmail, 'demo-secure-pass');
     setIsSubmitting(false);
     if (ok) {
       navigate(from, { replace: true });
@@ -62,29 +52,6 @@ export const LoginPage: React.FC = () => {
           <p className="text-xs text-stone-500">
             Access your encrypted personal cycle history & health sanctuary
           </p>
-        </div>
-
-        {/* Demo Fast-Login helper buttons */}
-        <div className="p-3 bg-ivory-50 rounded-2xl border border-ivory-200 space-y-2 text-xs">
-          <span className="text-[11px] font-semibold text-stone-500 uppercase tracking-wide block text-center">
-            Instant One-Click Demo Sign-In:
-          </span>
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => handleQuickDemoLogin('user@herhealth.org')}
-              className="py-2 px-3 rounded-xl bg-white border border-ivory-300 hover:border-rose-300 font-semibold text-rose-900 text-xs shadow-2xs transition"
-            >
-              Sign In as Member
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickDemoLogin('admin@herhealth.org')}
-              className="py-2 px-3 rounded-xl bg-white border border-ivory-300 hover:border-plum-300 font-semibold text-plum-900 text-xs shadow-2xs transition"
-            >
-              Sign In as Admin
-            </button>
-          </div>
         </div>
 
         {error && (

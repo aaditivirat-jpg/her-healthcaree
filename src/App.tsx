@@ -23,6 +23,7 @@ import { AccountPage } from './pages/AccountPage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { PrivacyTermsPage } from './pages/PrivacyTermsPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
 
 export function App() {
   return (
@@ -43,9 +44,11 @@ export function App() {
                   <Route path="/ask-assistant" element={<AskHealthPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/reset-password" element={<ResetPasswordPage />} />
                   <Route path="/privacy-terms" element={<PrivacyTermsPage />} />
 
                   {/* Protected member routes */}
+
                   <Route
                     path="/dashboard"
                     element={
@@ -62,6 +65,7 @@ export function App() {
                       </ProtectedRoute>
                     }
                   />
+
                   <Route
                     path="/records"
                     element={
