@@ -46,6 +46,7 @@ export function App() {
                   <Route path="/privacy-terms" element={<PrivacyTermsPage />} />
 
                   {/* Protected member routes */}
+
                   <Route
                     path="/dashboard"
                     element={
@@ -62,6 +63,7 @@ export function App() {
                       </ProtectedRoute>
                     }
                   />
+
                   <Route
                     path="/records"
                     element={
